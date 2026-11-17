@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Token Launch Radar</h1>
+    <p class="sub">Pre-token protocols ranked by implied launch value. Model <b id="modelVersion">—</b> · snapshot <b id="asOf">—</b> · records no token ≠ has no token.</p>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+<section class="model-note" id="modelNote"></section>
+<nav class="controls">
+  <input id="q" type="search" placeholder="Search name, slug, category…" aria-label="Search">
+  <select id="chainSel" aria-label="Chain filter"><option value="">All chains</option></select>
+  <select id="catSel" aria-label="Category filter"><option value="">All categories</option></select>
+  <select id="riskSel" aria-label="Risk filter"><option value="">Any risk</option><option value="low">Low risk</option><option value="medium">Medium risk</option><option value="high">High risk</option></select>
+  <label class="chk"><input id="watchOnly" type="checkbox"> Watchlist only ★</label>
+  <select id="sortSel" aria-label="Sort">
+    <option value="rank">Sort: Rank</option>
+    <option value="implied">Sort: Implied value</option>
+    <option value="tvl">Sort: TVL</option>
+    <option value="change">Sort: 7d change</option>
+    <option value="efficiency">Sort: Value per $ farmed</option>
+    <option value="age">Sort: Age</option>
+  </select>
+  <span class="count" id="count"></span>
+</nav>
+<main>
+  <div class="table-wrap">
+    <table id="board">
+      <thead><tr>
+        <th data-k="rank">#</th><th data-k="name">Protocol</th><th data-k="category">Category</th>
+        <th data-k="tvl">TVL</th><th data-k="change">7d %</th><th data-k="implied">Implied value</th>
+        <th data-k="eff">Per $ farmed</th><th data-k="mult">Peer multiple</th><th>Risk</th><th>Chains</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <aside id="detail" class="detail" hidden></aside>
+</main>
+<section class="live-strip"><h2>Live-token peers — already trading, never ranked here; they calibrate the multiples above</h2><div id="liveChips" class="chips"></div></section>
+<footer>Implied value = TVL × category peer multiple (median mcap/TVL of live-token peers) × momentum × maturity × breadth. Farm plans are sequenced with cost, time and an exit rule per protocol.</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
